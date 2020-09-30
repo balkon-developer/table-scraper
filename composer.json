@@ -1,0 +1,29 @@
+{
+    "name": "balkon-developer/table-scapers",
+    "description": "Table scrapers with unmerge cell.",
+    "license": "MIT",
+    "homepage": "https://github.com/balkon-developer/table-scrapers",
+    "support": {
+        "issues": "https://github.com/balkon-developer/table-scrapers/issues",
+        "source": "https://github.com/balkon-developer/table-scrapers"
+    },
+    "authors": [
+        {
+            "name": "Mokhamad Rofiudin",
+            "email": "mokh.rofiudin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "illuminate/support": ">=6.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BalkonDeveloper\\TableScraper\\": ""
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev"
+}
