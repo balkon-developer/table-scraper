@@ -1,4 +1,5 @@
 html/
 vendor/
+composer.lock
 .phpunit*
 .DS_Store
