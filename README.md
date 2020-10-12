@@ -1,7 +1,5 @@
 <p align="center">
-    <a href="https://github.com/balkon-developer/table-scraper/actions">
-        <img src="https://github.com/balkon-developer/table-scraper/workflows/tests/badge.svg" alt="Build Status">
-    </a>
+    [![Build Status](https://travis-ci.org/mrofi/table-scraper.svg?branch=dev)](https://travis-ci.org/mrofi/table-scraper)
 </p>
 
 # PHP Table Scraper
