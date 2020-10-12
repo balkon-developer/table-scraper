@@ -1,42 +1,38 @@
-name: tests
-
 on:
   push:
+    branches: [ dev ]
   pull_request:
-  schedule:
-    - cron: '0 0 * * *'
+    branches: [ dev ]
 
 jobs:
   tests:
 
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
-      matrix:
-        php: [7.3, 7.4]
-        laravel: [^8.0]
-
-    name: P${{ matrix.php }} - L${{ matrix.laravel }}
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: Cache dependencies
-        uses: actions/cache@v1
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
         with:
-          path: ~/.composer/cache/files
-          key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip
-          coverage: none
-
-      - name: Install dependencies
-        run: composer require "illuminate/contracts=${{ matrix.laravel }}" --prefer-dist --no-interaction
+          coverage: xdebug
 
       - name: Execute tests
         run: vendor/bin/phpunit --verbose
