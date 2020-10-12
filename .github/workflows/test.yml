@@ -8,6 +8,12 @@ jobs:
   tests:
 
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [7.3, 7.4]
+
+    name: P${{ matrix.php }}
 
     steps:
       - uses: actions/checkout@v2
