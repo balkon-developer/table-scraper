@@ -145,7 +145,7 @@ HTML;
     }
 
     /** @test */
-    public function it_owned_node_elements_properties()
+    public function it_owns_node_elements_properties()
     {
         $table = $this->table();
 
